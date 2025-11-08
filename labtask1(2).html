@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form Examples - Shehory</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            margin: 40px;
+        }
+        .form-section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+            max-width: 700px;
+        }
+        h2 {
+            color: #003366;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+        input, select, textarea, button {
+            margin: 6px 0;
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        label {
+            font-weight: bold;
+        }
+        button {
+            background-color: #004080;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0059b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1️⃣ Simple Login Form -->
+    <div class="form-section">
+        <h2>1. Login Form</h2>
+        <form>
+            <label>Username:</label>
+            <input type="text" name="username" placeholder="Enter username" required>
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="Enter password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- 2️⃣ Registration Form -->
+    <div class="form-section">
+        <h2>2. Registration Form</h2>
+        <form>
+            <label>Full Name:</label>
+            <input type="text" name="fullname" required>
+
+            <label>Email:</label>
+            <input type="email" name="email" required>
+
+            <label>Password:</label>
+            <input type="password" name="password" required>
+
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+
+            <label>Skills:</label>
+            <input type="checkbox" name="skills" value="HTML"> HTML
+            <input type="checkbox" name="skills" value="CSS"> CSS
+            <input type="checkbox" name="skills" value="JavaScript"> JavaScript
+
+            <label>Country:</label>
+            <select name="country">
+                <option>Bangladesh</option>
+                <option>India</option>
+                <option>USA</option>
+                <option>UK</option>
+            </select>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <!-- 3️⃣ Feedback Form -->
+    <div class="form-section">
+        <h2>3. Feedback Form</h2>
+        <form>
+            <label>Your Name:</label>
+            <input type="text" name="name" placeholder="Enter your name">
+
+            <label>Your Feedback:</label>
+            <textarea name="feedback" rows="5" placeholder="Write something..."></textarea>
+
+            <label>Rate Us:</label>
+            <select name="rating">
+                <option>Excellent</option>
+                <option>Good</option>
+                <option>Average</option>
+                <option>Poor</option>
+            </select>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+    <!-- 4️⃣ Contact Us Form -->
+    <div class="form-section">
+        <h2>4. Contact Us Form</h2>
+        <form>
+            <label>Name:</label>
+            <input type="text" name="name" required>
+
+            <label>Email:</label>
+            <input type="email" name="email" required>
+
+            <label>Message:</label>
+            <textarea name="message" rows="4" placeholder="Type your message here..." required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <!-- 5️⃣ Job Application Form -->
+    <div class="form-section">
+        <h2>5. Job Application Form</h2>
+        <form>
+            <label>Full Name:</label>
+            <input type="text" name="fullname" required>
+
+            <label>Email:</label>
+            <input type="email" name="email" required>
+
+            <label>Upload Resume:</label>
+            <input type="file" name="resume" accept=".pdf,.doc,.docx">
+
+            <label>Position:</label>
+            <select name="position">
+                <option>Web Developer</option>
+                <option>Designer</option>
+                <option>Photographer</option>
+            </select>
+
+            <button type="submit">Apply</button>
+        </form>
+    </div>
+
+    <!-- 6️⃣ Newsletter Subscription -->
+    <div class="form-section">
+        <h2>6. Newsletter Subscription</h2>
+        <form>
+            <label>Email:</label>
+            <input type="email" name="email" placeholder="Enter your email">
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+
+    <!-- 7️⃣ Search Form -->
+    <div class="form-section">
+        <h2>7. Search Form</h2>
+        <form>
+            <label>Search:</label>
+            <input type="text" name="query" placeholder="Type here to search...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- 8️⃣ Student Admission Form -->
+    <div class="form-section">
+        <h2>8. Student Admission Form</h2>
+        <form>
+            <label>Student Name:</label>
+            <input type="text" name="studentname" required>
+
+            <label>Father’s Name:</label>
+            <input type="text" name="fathername" required>
+
+            <label>Date of Birth:</label>
+            <input type="date" name="dob">
+
+            <label>Department:</label>
+            <select name="department">
+                <option>CSE</option>
+                <option>EEE</option>
+                <option>Textile</option>
+                <option>BBA</option>
+            </select>
+
+            <label>Address:</label>
+            <textarea name="address" rows="3"></textarea>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+
+</body>
+</html>
