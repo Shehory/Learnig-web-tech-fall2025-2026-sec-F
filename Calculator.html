@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+</head>
+<body>
+    <div id="calculator"></div>
+
+    <script>
+        // Create calculator structure and apply styles
+        const calc = document.getElementById('calculator');
+        calc.style.width = '300px';
+        calc.style.margin = '50px auto';
+        calc.style.padding = '20px';
+        calc.style.border = '2px solid black';
+        calc.style.borderRadius = '10px';
+        calc.style.backgroundColor = '#f0f0f0';
+
+        // Create display
+        const display = document.createElement('input');
+        display.type = 'text';
+        display.id = 'display';
+        display.value = '0';
+        display.readOnly = true;
+        display.style.width = '100%';
+        display.style.height = '50px';
+        display.style.fontSize = '24px';
+        display.style.textAlign = 'right';
+        display.style.marginBottom = '10px';
+        display.style.border = '1px solid black';
+        display.style.borderRadius = '5px';
+        display.style.padding = '5px';
+        display.style.boxSizing = 'border-box';
+        calc.appendChild(display);
+
+        // Updated button layout with AC button
+        const buttons = [
+            ['AC', '7', '8', '9', '/'],
+            ['4', '5', '6', '*'],
+            ['1', '2', '3', '-'],
+            ['0', '.', 'C', '+'],
+            ['=']
+        ];
+
+        // Create button grid
+        buttons.forEach(row => {
+            const rowDiv = document.createElement('div');
+            rowDiv.style.display = 'flex';
+            rowDiv.style.marginBottom = '5px';
+            
+            row.forEach(btnText => {
+                const btn = document.createElement('button');
+                btn.textContent = btnText;
+                btn.style.flex = '1';
+                btn.style.height = '60px';
+                btn.style.fontSize = '20px';
+                btn.style.margin = '2px';
+                btn.style.border = '1px solid black';
+                btn.style.borderRadius = '5px';
+                btn.style.cursor = 'pointer';
+                btn.style.backgroundColor = '#ffffff';
+                
+                btn.onmouseover = function() {
+                    this.style.backgroundColor = '#e0e0e0';
+                };
+                btn.onmouseout = function() {
+                    this.style.backgroundColor = '#ffffff';
+                };
+                
+                btn.onclick = function() {
+                    handleClick(btnText);
+                };
+                
+                rowDiv.appendChild(btn);
+            });
+            
+            calc.appendChild(rowDiv);
+        });
+
+        // Calculator logic
+        let currentInput = '0';
+        let operator = '';
+        let previousValue = '';
+        let shouldResetDisplay = false;
+
+        function handleClick(value) {
+
+            // FULL CLEAR (AC)
+            if (value === 'AC') {
+                currentInput = '0';
+                operator = '';
+                previousValue = '';
+                shouldResetDisplay = false;
+                display.value = currentInput;
+                return;
+            }
+
+            // Handle 'C' - delete last character
+            if (value === 'C') {
+                if (currentInput.length > 1) {
+                    currentInput = currentInput.slice(0, -1);
+                } else {
+                    currentInput = '0';
+                }
+                display.value = currentInput;
+                return;
+            }
+
+            // Handle '=' button
+            if (value === '=') {
+                if (operator && previousValue !== '') {
+                    const prev = parseFloat(previousValue);
+                    const curr = parseFloat(currentInput);
+                    let result = 0;
+
+                    if (operator === '+') result = prev + curr;
+                    else if (operator === '-') result = prev - curr;
+                    else if (operator === '*') result = prev * curr;
+                    else if (operator === '/') result = prev / curr;
+
+                    currentInput = result.toString();
+                    display.value = currentInput;
+                    operator = '';
+                    previousValue = '';
+                    shouldResetDisplay = true;
+                }
+                return;
+            }
+
+            // Operators
+            if (['+', '-', '*', '/'].includes(value)) {
+                if (operator && previousValue !== '' && !shouldResetDisplay) {
+                    const prev = parseFloat(previousValue);
+                    const curr = parseFloat(currentInput);
+                    let result = 0;
+
+                    if (operator === '+') result = prev + curr;
+                    else if (operator === '-') result = prev - curr;
+                    else if (operator === '*') result = prev * curr;
+                    else if (operator === '/') result = prev / curr;
+
+                    currentInput = result.toString();
+                    display.value = currentInput;
+                }
+                
+                operator = value;
+                previousValue = currentInput;
+                shouldResetDisplay = true;
+                return;
+            }
+
+            // Decimal point
+            if (value === '.') {
+                if (!currentInput.includes('.')) {
+                    if (shouldResetDisplay) {
+                        currentInput = '0.';
+                        shouldResetDisplay = false;
+                    } else {
+                        currentInput += '.';
+                    }
+                }
+                display.value = currentInput;
+                return;
+            }
+
+            // Numbers
+            if (shouldResetDisplay) {
+                currentInput = value;
+                shouldResetDisplay = false;
+            } else {
+                if (currentInput === '0') {
+                    currentInput = value;
+                } else {
+                    currentInput += value;
+                }
+            }
+
+            display.value = currentInput;
+        }
+    </script>
+</body>
+</html>
